@@ -3,13 +3,12 @@ const numBtn = document.getElementsByClassName("num btn");
 
 let pressed;
 let display;
-let displayArr = [];
 
 let firstNum;
 let operator;
 let secondNum;
 
-let answer;
+// let answer;
 
 let operatorPressed = false;
 
@@ -19,28 +18,23 @@ let secondNumberArr = [];
 
 function add(a,b){
     answer = a+b
-    console.log(answer)
     return answer
 }
 function subtract(a,b){
     answer = a-b
-    console.log(answer)
     return answer
 }
 function multiply(a,b){
     answer = a*b
-    console.log(answer)
     return answer
 }
 function divide(a,b){
-    answer = ab
-    console.log(answer)
+    answer = a/b
     return answer
 }
 
 function operate(a,oper,b){
     if(oper == "+"){
-        console.log('pp');
         return add(a,b);
     }
     if(oper == "-"){
@@ -89,7 +83,7 @@ document.addEventListener('click', function(e){
         if(operatorPressed == true) {
             display = operate(parseInt(firstNum), operator, parseInt(secondNum))
             popDisp(display)
-            operatorPressed = false
+            reset()
         }
     }
 })
@@ -102,7 +96,8 @@ document.addEventListener('click', function(e){
 
 document.addEventListener('click', function(e){
     if(e.target.className=="clear btn"){
-        clearDisp();
+        reset();
+        popDisp("")
     }
 })
 
@@ -116,7 +111,6 @@ function firstNumber(num){
 
     firstNumArr.push(num)
     firstNum = firstNumArr.join("");
-    console.log(firstNum)
     popDisp(firstNum);
 }
 
@@ -129,7 +123,6 @@ function secondNumber(num){
 
     secondNumberArr.push(num)
     secondNum = secondNumberArr.join("");
-    console.log(secondNum)
     popDisp(secondNum);
 }
 
@@ -157,9 +150,13 @@ function deleteNum(){
     alert("not complete")
 }
 
-function clearDisp(){
-    display = undefined;
-    popDisp()
-    // alert("not complete, site will reload")
-    // window.location.reload()
+function reset(){
+    // firstNum = undefined;
+    firstNumArr = [];
+    // secondNum = undefined;
+    secondNumberArr = [];
+    // pressed = undefined;
+    // display = undefined;
+    operator = undefined;
+    operatorPressed = false;
 }
