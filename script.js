@@ -1,39 +1,57 @@
 const numBtn = document.getElementsByClassName("num btn");
 
 
-let a;
-let operator;
-let b;
+let pressed;
 let display;
 let displayArr = [];
-let pressed;
+
+let firstNum;
+let operator;
+let secondNum;
+
+let answer;
+
+let operatorPressed = false;
+
+let firstNumArr = [];
+let secondNumberArr = [];
+
 
 function add(a,b){
-    console.log(a+b)
+    answer = a+b
+    console.log(answer)
+    return answer
 }
 function subtract(a,b){
-    console.log(a-b)
+    answer = a-b
+    console.log(answer)
+    return answer
 }
 function multiply(a,b){
-    console.log(a*b)
+    answer = a*b
+    console.log(answer)
+    return answer
 }
 function divide(a,b){
-    console.log(a/b)
+    answer = ab
+    console.log(answer)
+    return answer
 }
 
-function operate(a,operator,b){
-    if(operator == "+"){
-
+function operate(a,oper,b){
+    if(oper == "+"){
+        console.log('pp');
+        return add(a,b);
     }
-    if(operator == "-"){
-
+    if(oper == "-"){
+        return subtract(a,b);
     }
-    if(operator == "*"){
-
+    if(oper == "*"){
+        return multiply(a,b);
     }
-    if(operator == "/"){
-
-    } else return console.log("Error")
+    if(oper == "/"){
+        return divide(a,b);
+    }
 
 
 }
@@ -42,14 +60,43 @@ function operate(a,operator,b){
 document.addEventListener('click', function(e){
     if(e.target.className=="num btn"){
         pressed = e.target.innerHTML
-        popDisp(pressed);
+        if(operatorPressed == false){
+            firstNumber(pressed);
+        }
+        if(operatorPressed == true){
+            secondNumber(pressed);
+        }
+
+    }
+})
+
+document.addEventListener('click', function(e){
+    if(e.target.className=="operator btn"){
+        pressed = e.target.innerHTML
+        operator = pressed
+        popDisp(pressed)
+        operatorPressed = true;
+        // if(operatorPressed == false){
+        // }
+        // else
+        // console.log(display.slice(-1))
+    }
+})
+
+document.addEventListener('click', function(e){
+    if(e.target.className=="equals btn"){
+        pressed = e.target.innerHTML
+        if(operatorPressed == true) {
+            display = operate(parseInt(firstNum), operator, parseInt(secondNum))
+            popDisp(display)
+            operatorPressed = false
+        }
     }
 })
 
 document.addEventListener('click', function(e){
     if(e.target.className=="delete btn"){
         deleteNum()
-        popDisp();
     }
 })
 
@@ -59,31 +106,50 @@ document.addEventListener('click', function(e){
     }
 })
 
-let text = '123214'
 
-function popDisp(update){
-    
+function firstNumber(num){
     if(display){
-        if(update === "."){
+        if(num === "."){
             if(display.slice(-1) === ".") return
         }
     }
+
+    firstNumArr.push(num)
+    firstNum = firstNumArr.join("");
+    console.log(firstNum)
+    popDisp(firstNum);
+}
+
+function secondNumber(num){
+    if(display){
+        if(num === "."){
+            if(display.slice(-1) === ".") return
+        }
+    }
+
+    secondNumberArr.push(num)
+    secondNum = secondNumberArr.join("");
+    console.log(secondNum)
+    popDisp(secondNum);
+}
+
+function popDisp(first, oper, second){
+    
+    // if(display){
+    //     if(update === "."){
+    //         if(display.slice(-1) === ".") return
+    //     }
+    // }
     /*todo
     add a xzero if first key pressed is .
     */
 
-
-    displayArr.push(update)
-    display = displayArr.join("");
-    
-    // console.log(display.slice(-1))
-    // console.log(display.slice(-2))
-    console.log(display)
-    
+    // displayArr.push(update)
+    // display = displayArr.join("");
     
 
-
-    document.getElementById("displayText").innerHTML = display;
+    
+    document.getElementById("displayText").innerHTML = first;
 
 }
 
@@ -92,6 +158,8 @@ function deleteNum(){
 }
 
 function clearDisp(){
-    alert("not complete, site will reload")
-    window.location.reload()
+    display = undefined;
+    popDisp()
+    // alert("not complete, site will reload")
+    // window.location.reload()
 }
