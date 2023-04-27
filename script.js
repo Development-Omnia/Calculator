@@ -4,8 +4,7 @@ const numBtn = document.getElementsByClassName("num btn");
 let a;
 let operator;
 let b;
-let display=[];
-
+let display;
 let pressed;
 
 function add(a,b){
@@ -62,19 +61,34 @@ document.addEventListener('click', function(e){
 let text = '123214'
 
 function popDisp(update){
-
-
-    display.push(update)
-    // console.log(display.join(""))
+    let displayArr = [];
     
-    document.getElementById("displayText").innerHTML = display.join("");
+    if(display){
+        if(update === "."){
+            if(display.slice(-1) === ".") return
+        }
+    }
+    /*todo
+    add a xzero if first key pressed is .
+    */
+
+
+    displayArr.push(update)
+    display = displayArr.join("");
+    
+    // console.log(display.slice(-1))
+    // console.log(display.slice(-2))
+    console.log(display)
+    
+    
+
+
+    document.getElementById("displayText").innerHTML = display;
 
 }
 
 function deleteNum(){
-
-    text = text.substring(0, text.length - 1);
-    popDisp(text)
+    alert("not complete")
 }
 
 function clearDisp(){
