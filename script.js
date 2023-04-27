@@ -81,7 +81,7 @@ document.addEventListener('click', function(e){
     if(e.target.className=="equals btn"){
         pressed = e.target.innerHTML
         if(operatorPressed == true) {
-            display = operate(parseInt(firstNum), operator, parseInt(secondNum))
+            display = operate(parseFloat(firstNum), operator, parseFloat(secondNum))
             popDisp(display)
             reset()
         }
