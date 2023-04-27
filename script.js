@@ -5,6 +5,7 @@ let a;
 let operator;
 let b;
 let display;
+let displayArr = [];
 let pressed;
 
 function add(a,b){
@@ -61,7 +62,6 @@ document.addEventListener('click', function(e){
 let text = '123214'
 
 function popDisp(update){
-    let displayArr = [];
     
     if(display){
         if(update === "."){
