@@ -7,12 +7,11 @@ Basic web calculator. Takes inputed numbers and operand and totals them up.
 
 To Do:
 
-- [ ]decimal breaks after equals
-- [ ]decimal can be used after inputing another number
-- [ ]delete 
-- [ ]make better clear function
-- [ ]rewrite pop display and associated util
-- [ ]
+- [ ] decimal breaks after equals
+- [ ] decimal can be used after inputing another number
+- [ ] delete 
+- [ ] make better clear function
+- [ ] rewrite pop display and associated util
 
 
 
